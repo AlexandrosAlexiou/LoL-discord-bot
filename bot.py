@@ -17,11 +17,29 @@ roles = {'jungle', 'top', 'bot', 'support', 'mid'}
 for line in open('champions.csv', 'r').readlines():
     champions.add(line.split("\t")[0])
 
+def createHelpEmbed():
+    embed = discord.Embed(
+            title='**COMMANDS**',
+            description='',
+            colour=discord.Colour.green()
+        )
+    embed.add_field(name='`!runes <champion> <role>`', value='Shows runes for a champion for a role. Example: `!runes ezreal bot`.', inline=False)
+    embed.add_field(name='`!build <champion> <role>`', value='Shows entire build for a champion for a role. Example: `!build ezreal bot`.', inline=False)
+    embed.add_field(name='`!items <champion> <role>`', value='Shows items for a champion for a role. Example: `!items ezreal bot`.', inline=False)
+    embed.add_field(name='`!aram <champion>`', value='Shows entire build for a champion in ARAM mode. Example: `!aram ezreal`.', inline=False)
+    return embed
+
 
 @client.event
 async def on_message(message):
     channel = message.channel
     if message.author == client.user:  # we do not want the bot to reply to itself
+        return
+
+    if message.content.startswith('!hippalus'):
+        embed = createHelpEmbed()
+
+        await message.channel.send(content=None, embed=embed)
         return
 
     if message.content.startswith('!build'):
@@ -30,11 +48,11 @@ async def on_message(message):
         role = keywords[2]
 
         if champion not in champions:
-            await channel.send(f"**Champion {champion} does not exist in the list -> **\n" + str(list(champions)))
+            await channel.send(f"**Champion {champion} does not exist in the list**\n" + str(list(champions)))
             return
 
         if role not in roles:
-            await channel.send(f"**Role {role} does not exist in the list -> **\n" + str(list(roles)))
+            await channel.send(f"**Role {role} does not exist in the list**\n" + str(list(roles)))
             return
 
         scraper = Scraper(f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
@@ -52,11 +70,11 @@ async def on_message(message):
         role = keywords[2]
 
         if champion not in champions:
-            await channel.send(f"**Champion {champion} does not exist in the list -> **\n" + str(list(champions)))
+            await channel.send(f"**Champion {champion} does not exist in the list**\n" + str(list(champions)))
             return
 
         if role not in roles:
-            await channel.send(f"**Role {role} does not exist in the list -> **\n" + str(list(roles)))
+            await channel.send(f"**Role {role} does not exist in the list**\n" + str(list(roles)))
             return
 
         scraper = Scraper(f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
@@ -96,7 +114,7 @@ async def on_message(message):
         champion = keywords[1]
 
         if champion not in champions:
-            await channel.send(f"**Champion {champion} does not exist in the list -> **\n" + str(list(champions)))
+            await channel.send(f"**Champion {champion} does not exist in the list**\n" + str(list(champions)))
             return
 
         scraper = Scraper(f"https://www.op.gg/aram/{champion}/statistics/")
