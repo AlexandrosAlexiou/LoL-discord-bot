@@ -1,14 +1,20 @@
 from selenium import webdriver
-from PIL import Image
-from io import BytesIO
-import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-fox = webdriver.Firefox()
-fox.get('https://u.gg/lol/champions/aatrox/build')
-time.sleep(3)
-# now that we have the preliminary stuff out of the way time to get that image :D
-element = fox.find_element_by_class_name("champion-profile-content-container")
-# click screenshot
-element.screenshot('aatrox.png')
-fox.close()
-fox.quit()
+
+class Scraper:
+    def __init__(self, page_url):
+        self.driver = webdriver.Firefox()
+        self.driver.get(page_url)
+
+    def scrape(self, class_name):
+        element = WebDriverWait(self.driver, 2).until(EC.presence_of_element_located((By.CLASS_NAME, class_name)))
+        image = element.screenshot_as_png
+        self.__close()
+        return image
+
+    def __close(self):
+        self.driver.close()
+        self.driver.quit()
