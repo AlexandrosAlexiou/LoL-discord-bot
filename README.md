@@ -3,8 +3,26 @@
 # <div align="center">Hippalus</div>
 <p align="center">A Discord bot useful for League of Legends players. Built using <a href="https://discordpy.readthedocs.io/en/stable/">Discord.py</a> and <a href="https://www.op.gg/">OP.GG</a>. Deployed to Heroku.</p>
 
+## <div align="center">Features</div>
+#### <p align="center">Get runes for a champion with a specific role</p>
+<div align="center">e.g. !runes sett support</div>
+<p align="center"> <img height="200" width="250" src="https://cdn.discordapp.com/attachments/891718066768060456/892092969824440380/image.png" alt="hippalus"/></p>
+
+#### <p align="center">Get items for a champion with a specific role</p>
+<div align="center">e.g. !items ezreal mid</div>
+<p align="center"> <img height="200" width="250" src="https://cdn.discordapp.com/attachments/891718066768060456/892045779567513650/image.png" alt="hippalus"/></p>
+
+### <p align="center">Get entire build for a champion with a specific role</p>
+<div align="center">e.g. !build ezreal top</div>
+<p align="center"> <img width="250" src="https://cdn.discordapp.com/attachments/891718066768060456/892060896191451236/image.png" alt="hippalus"/></p>
+
+### <p align="center">Get aram build for a champion</p>
+<div align="center">e.g. !aram masteryi</div>
+<p align="center"> <img width="250" src="https://cdn.discordapp.com/attachments/891718066768060456/892037008854233128/image.png" alt="hippalus"/></p>
+
 ## <div align="center">Invite bot to your server</div>
 <p align="center">Please refer <a href="https://discordpy.readthedocs.io/en/stable/discord.html">here</a> to read how to create a bot app and invite it to your server.</p>
+
 
 ## <div align="center">Run locally</div>
 
