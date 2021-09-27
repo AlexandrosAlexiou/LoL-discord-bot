@@ -61,7 +61,7 @@ async def on_message(message):
 
     if message.content.startswith('!aram'):
         scraper = Scraper(f"https://www.op.gg/aram/{champion}/statistics/")
-        image = scraper.scrape(class_name="l-champion-statistics-content")
+        image = scraper.scrape(class_name="l-champion-statistics-content__main.aram")
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
         return
