@@ -32,6 +32,9 @@ def create_help_embed():
     embed.add_field(name='`!aram <champion>`',
                     value='Shows entire build for a champion in ARAM mode. Example: `!aram ezreal`.',
                     inline=False)
+    embed.add_field(name='`!src`',
+                    value='Check the source code at GitHub.',
+                    inline=False)
     return embed
 
 
@@ -52,6 +55,10 @@ async def on_message(message):
 
     if message.content.startswith('!hippalus'):
         await message.channel.send(content=None, embed=create_help_embed())
+        return
+
+    if message.content.startswith('!src'):
+        await message.channel.send("https://github.com/AlexandrosAlexiou/hippalus-discord-bot")
         return
 
     champion = message_keywords[1]
