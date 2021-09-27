@@ -31,7 +31,7 @@
            `$ heroku config:set GECKODRIVER_PATH=/app/vendor/geckodriver/geckodriver`<br>
            `$ heroku config:set LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/lib:/app/vendor`<br>
            `$ heroku config:set PATH=/usr/local/bin:/usr/bin:/bin:/app/vendor/`<br>
-           `$ heroku config:set DISCORD_TOKER=<YOUR DISCORD TOKEN HERE (FROM DISCORD DEVELOPER PORTAL)>`<br>
+           `$ heroku config:set DISCORD_TOKEN=<YOUR DISCORD TOKEN HERE (FROM DISCORD DEVELOPER PORTAL)>`<br>
     3. Navigate to Deploy page of the Heroku Dashboard and Deploy main branch <br>
     4. After the deploy was successful open a terminal in the root folder of the repo and run <br>
         `$ heroku ps:scale worker=1`
