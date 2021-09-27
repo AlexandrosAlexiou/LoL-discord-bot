@@ -1,7 +1,7 @@
-import time
-
+import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.firefox.options import Options
@@ -14,7 +14,7 @@ class Scraper:
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
         options.add_argument('--disable-gpu')
-        self.driver = webdriver.Firefox(options=options)
+        self.driver = webdriver.Firefox(options=options, executable_path=os.environ.get("GECKODRIVER_PATH"), firefox_binary=FirefoxBinary(os.environ.get("FIREFOX_BIN")))
         self.driver.get(page_url)
 
     def scrape(self, class_name=None, xpath=None):
