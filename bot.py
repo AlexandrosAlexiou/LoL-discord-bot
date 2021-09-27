@@ -52,6 +52,7 @@ async def on_message(message):
 
     if message.content.startswith('!hippalus'):
         await message.channel.send(content=None, embed=create_help_embed())
+        return
 
     champion = message_keywords[1]
 
@@ -63,32 +64,38 @@ async def on_message(message):
         image = scraper.scrape(class_name="l-champion-statistics-content")
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
+        return
 
     try:
         role = message_keywords[2]
     except IndexError:
         await message.channel.send(f"**Please specify the role for {champion}**")
+        return
 
     if role not in roles:
         await message.channel.send(f"**Role {role} does not exist in the list**\n" + str(list(roles)))
+        return
 
     if message.content.startswith('!build'):
         scraper = Scraper(f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
         image = scraper.scrape(class_name="l-champion-statistics-content__main")
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
+        return
 
     if message.content.startswith('!runes'):
         scraper = Scraper(f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
         image = scraper.scrape(class_name="champion-overview__table.champion-overview__table--rune.tabItems")
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
+        return
 
     if message.content.startswith('!items'):
         scraper = Scraper(f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
         image = scraper.scrape(xpath="(//table[@class='champion-overview__table'])[1]")
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
+        return
 
 
 @client.event

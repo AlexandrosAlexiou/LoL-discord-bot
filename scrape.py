@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 
 
 class Scraper:
@@ -13,7 +13,8 @@ class Scraper:
         options.headless = True
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
-        self.driver = webdriver.Chrome(options=options)
+        options.add_argument('--disable-gpu')
+        self.driver = webdriver.Firefox(options=options)
         self.driver.get(page_url)
 
     def scrape(self, class_name=None, xpath=None):
