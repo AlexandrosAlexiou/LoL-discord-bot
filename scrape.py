@@ -22,7 +22,7 @@ class Scraper:
 
     def scrape(self, class_name=None, xpath=None):
         try:
-            WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable((By.CLASS_NAME, 'css-1litn2c'))).click()
+            WebDriverWait(self.driver, 4).until(EC.element_to_be_clickable((By.CLASS_NAME, 'css-1litn2c'))).click()
         except TimeoutException:
             pass
         if class_name:
