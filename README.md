@@ -1,27 +1,18 @@
 <p align="center"> <img height="120" width="120" src="https://cdn.discordapp.com/attachments/326432556037832704/891739081762033704/3.png" alt="hippalus"/></p>
 
-# <div align="center">Hippalus</div>
+<h1><div align="center">Hippalus</div></h1> 
 <p align="center">A Discord bot useful for League of Legends players. Built using <a href="https://discordpy.readthedocs.io/en/stable/">Discord.py</a> and <a href="https://www.op.gg/">OP.GG</a>. Deployed to Heroku.</p>
 
+<br>
+<br>
+
+---
+
 ## <div align="center">Features</div>
-#### <p align="center">Get runes for a champion with a specific role</p>
-<div align="center">e.g. !runes sett support</div>
-<p align="center"> <img height="200" width="250" src="https://cdn.discordapp.com/attachments/891718066768060456/892092969824440380/image.png" alt="hippalus"/></p>
-
-#### <p align="center">Get items for a champion with a specific role</p>
-<div align="center">e.g. !items ezreal mid</div>
-<p align="center"> <img height="200" width="250" src="https://cdn.discordapp.com/attachments/891718066768060456/892045779567513650/image.png" alt="hippalus"/></p>
-
-### <p align="center">Get entire build for a champion with a specific role</p>
-<div align="center">e.g. !build ezreal top</div>
-<p align="center"> <img width="250" src="https://cdn.discordapp.com/attachments/891718066768060456/892060896191451236/image.png" alt="hippalus"/></p>
-
-### <p align="center">Get aram build for a champion</p>
-<div align="center">e.g. !aram masteryi</div>
-<p align="center"> <img width="250" src="https://cdn.discordapp.com/attachments/891718066768060456/892037008854233128/image.png" alt="hippalus"/></p>
+Get runes, items, entire build for a champion with a specific role or a complete ARAM build for your random champion that you have no idea how to play. This bot works best for players that play LoL just for fun and do not want to think about build strategies etc.
 
 ## <div align="center">Invite bot to your server</div>
-<p align="center">Please refer <a href="https://discordpy.readthedocs.io/en/stable/discord.html">here</a> to read how to create a bot app and invite it to your server.</p>
+Please refer <a href="https://discordpy.readthedocs.io/en/stable/discord.html">here</a> to read how to create a bot app and invite it to your server. Visit [Discord Developer Portal](https://discord.com/developers/applications) for more information.
 
 
 ## <div align="center">Run locally</div>
@@ -29,11 +20,11 @@
 - You need to have Python 3.9.7 installed.
 - You need to have [geckodriver](https://github.com/mozilla/geckodriver/releases) installed and added to your PATH (selenium will search the PATH to find the executable).
 - Run `pip install -r requirements.txt` to install dependencies.
-- Create a `.env` file and add the following line, replacing ... with your token (you should have the token by now). <br>
+- Create a `.env` file and add the following line, replacing the dots with your Discord token (you should have the token by now). <br>
   `DISCORD_TOKEN="..."`
 - Run `python bot.py` to start the bot.
 - The bot should be now online.
-  - type `!hippalus` to get a list of the features
+  - type `!hippalus` to get a list of the commands
 
 ## <div align="center">Deploy to Heroku</div>
 
@@ -57,4 +48,4 @@
        You should see the following: <br>
             `app[worker.1]: Logged in as Hippalus with id ...`
     6. The bot should be online on your server <br>
-       - type `!hippalus` to get a list of the features
+       - type `!hippalus` to get a list of the commands
