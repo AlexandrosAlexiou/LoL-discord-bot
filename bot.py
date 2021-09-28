@@ -72,7 +72,7 @@ async def on_message(message):
     champion = message_keywords[1]
 
     if champion not in champions:
-        await message.channel.send(f"**Champion {champion} does not exist in the list**\n" + str(list(champions)))
+        await message.channel.send(f"**Champion {champion} does not exist in the list**\n" + " ".join(list(champions)))
 
     if message.content.startswith('!aram'):
         await message.channel.send(
@@ -90,7 +90,7 @@ async def on_message(message):
         return
 
     if role not in roles:
-        await message.channel.send(f"**Role {role} does not exist in the list**\n" + str(list(roles)))
+        await message.channel.send(f"**Role {role} does not exist in the list**\n" + " ".join(list(roles)))
         return
 
     if message.content.startswith('!build'):
