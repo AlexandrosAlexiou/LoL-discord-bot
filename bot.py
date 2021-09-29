@@ -7,6 +7,7 @@ from scrape import Scraper
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+PRODUCTION = os.getenv('PRODUCTION')
 
 client = discord.Client()
 
