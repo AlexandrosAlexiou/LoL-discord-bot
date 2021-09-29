@@ -73,12 +73,13 @@ async def on_message(message):
     champion = message_keywords[1]
 
     if champion not in champions:
-        await message.channel.send(f"**Champion {champion} does not exist in the list**\n" + " ".join(list(champions)))
+        champions_list_message = "```ini\n [" + ", ".join(list(champions)) + "] \n```"
+        await message.channel.send(f"❗ **Champion __{champion}__ does not exist in the list** ❗\n" + champions_list_message)
         return
 
     if message.content.startswith('!aram'):
         await message.channel.send(
-            embed=construct_embed(msg=f"Aram build for {champion} incoming", thumbnail_url=champions[champion]))
+            embed=construct_embed(msg=f"✅ Aram build for __{champion}__ incoming ✅", thumbnail_url=champions[champion]))
         scraper = Scraper(f"https://www.op.gg/aram/{champion}/statistics/")
         image = scraper.scrape(class_name="l-champion-statistics-content__main.aram")
         image = Image.open(io.BytesIO(image))
@@ -88,16 +89,17 @@ async def on_message(message):
     try:
         role = message_keywords[2]
     except IndexError:
-        await message.channel.send(f"**Please specify the role for {champion}**")
+        await message.channel.send(f"**Please specify the role for __{champion}__**")
         return
 
     if role not in roles:
-        await message.channel.send(f"**Role {role} does not exist in the list**\n" + " ".join(list(roles)))
+        roles_list_message = "```ini\n [" + ", ".join(list(roles)) + "] \n```"
+        await message.channel.send(f"❗ **Role __{role}__ does not exist in the list** ❗\n" + roles_list_message)
         return
 
     if message.content.startswith('!build'):
         await message.channel.send(
-            embed=construct_embed(msg=f"Build for {champion} {role} incoming", thumbnail_url=champions[champion]))
+            embed=construct_embed(msg=f"✅ Build for {champion} {role} incoming ✅", thumbnail_url=champions[champion]))
         scraper = Scraper(f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
         image = scraper.scrape(class_name="l-champion-statistics-content__main")
         image = Image.open(io.BytesIO(image))
@@ -106,7 +108,7 @@ async def on_message(message):
 
     if message.content.startswith('!runes'):
         await message.channel.send(
-            embed=construct_embed(msg=f"Runes for {champion} {role} incoming", thumbnail_url=champions[champion]))
+            embed=construct_embed(msg=f"✅ Runes for {champion} {role} incoming ✅", thumbnail_url=champions[champion]))
         scraper = Scraper(f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
         image = scraper.scrape(class_name="champion-overview__table.champion-overview__table--rune.tabItems")
         image = Image.open(io.BytesIO(image))
@@ -115,7 +117,7 @@ async def on_message(message):
 
     if message.content.startswith('!items'):
         await message.channel.send(
-            embed=construct_embed(msg=f"Items for {champion} {role} incoming", thumbnail_url=champions[champion]))
+            embed=construct_embed(msg=f"✅ Items for {champion} {role} incoming ✅", thumbnail_url=champions[champion]))
         scraper = Scraper(f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
         image = scraper.scrape(xpath="(//table[@class='champion-overview__table'])[1]")
         image = Image.open(io.BytesIO(image))
