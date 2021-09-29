@@ -53,6 +53,7 @@ def construct_embed(msg, thumbnail_url):
     embed.set_thumbnail(url=thumbnail_url)
     return embed
 
+
 @client.event
 async def on_message(message):
 
@@ -73,6 +74,7 @@ async def on_message(message):
 
     if champion not in champions:
         await message.channel.send(f"**Champion {champion} does not exist in the list**\n" + " ".join(list(champions)))
+        return
 
     if message.content.startswith('!aram'):
         await message.channel.send(
