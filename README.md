@@ -4,9 +4,6 @@
 <p align="center">A Discord bot useful for League of Legends players. Built using <a href="https://discordpy.readthedocs.io/en/stable/">Discord.py</a> and <a href="https://www.op.gg/">OP.GG</a>. Deployed to Heroku.</p>
 
 <br>
-<br>
-
----
 
 ## <div align="center">Features</div>
 Get runes, items, entire build for a champion with a specific role or a complete ARAM build for your random champion that you have no idea how to play. This bot works best for players that play LoL just for fun and do not want to think about build strategies etc.
@@ -49,3 +46,5 @@ Please refer <a href="https://discordpy.readthedocs.io/en/stable/discord.html">h
             `app[worker.1]: Logged in as Hippalus with id ...`
     6. The bot should be online on your server <br>
        - type `!hippalus` to get a list of the commands
+    7. If you want to stop the Heroku Dyno run: <br>
+       `$ heroku ps:scale worker=0` 
