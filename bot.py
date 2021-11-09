@@ -23,7 +23,8 @@ for line in open('champions.csv', 'r').readlines():
 
 
 def create_help_embed():
-    embed = discord.Embed(title='**COMMANDS**', description='', colour=discord.Colour.green())
+    embed = discord.Embed(title='**COMMANDS**',
+                          description='', colour=discord.Colour.green())
     embed.add_field(name='`!runes <champion> <role>`',
                     value='Shows runes for a champion for a role. Example: `!runes ezreal bot`.',
                     inline=False)
@@ -74,7 +75,8 @@ async def on_message(message):
     champion = message_keywords[1]
 
     if champion not in champions:
-        champions_list_message = "```ini\n [" + ", ".join(list(champions)) + "] \n```"
+        champions_list_message = "```ini\n [" + \
+            ", ".join(list(champions)) + "] \n```"
         await message.channel.send(f"❗ **Champion __{champion}__ does not exist in the list** ❗\n" + champions_list_message)
         return
 
@@ -82,7 +84,8 @@ async def on_message(message):
         await message.channel.send(
             embed=construct_embed(msg=f"✅ Aram build for __{champion}__ incoming ✅", thumbnail_url=champions[champion]))
         scraper = Scraper(f"https://www.op.gg/aram/{champion}/statistics/")
-        image = scraper.scrape(class_name="l-champion-statistics-content__main.aram")
+        image = scraper.scrape(
+            class_name="l-champion-statistics-content__main.aram")
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
         return
@@ -101,8 +104,10 @@ async def on_message(message):
     if message.content.startswith('!build'):
         await message.channel.send(
             embed=construct_embed(msg=f"✅ Build for {champion} {role} incoming ✅", thumbnail_url=champions[champion]))
-        scraper = Scraper(f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
-        image = scraper.scrape(class_name="l-champion-statistics-content__main")
+        scraper = Scraper(
+            f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
+        image = scraper.scrape(
+            class_name="l-champion-statistics-content__main")
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
         return
@@ -110,8 +115,10 @@ async def on_message(message):
     if message.content.startswith('!runes'):
         await message.channel.send(
             embed=construct_embed(msg=f"✅ Runes for {champion} {role} incoming ✅", thumbnail_url=champions[champion]))
-        scraper = Scraper(f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
-        image = scraper.scrape(class_name="champion-overview__table.champion-overview__table--rune.tabItems")
+        scraper = Scraper(
+            f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
+        image = scraper.scrape(
+            class_name="champion-overview__table.champion-overview__table--rune.tabItems")
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
         return
@@ -119,8 +126,10 @@ async def on_message(message):
     if message.content.startswith('!items'):
         await message.channel.send(
             embed=construct_embed(msg=f"✅ Items for {champion} {role} incoming ✅", thumbnail_url=champions[champion]))
-        scraper = Scraper(f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
-        image = scraper.scrape(xpath="(//table[@class='champion-overview__table'])[1]")
+        scraper = Scraper(
+            f"https://www.op.gg/champion/{champion}/statistics/{role}/build")
+        image = scraper.scrape(
+            xpath="(//table[@class='champion-overview__table'])[1]")
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
         return

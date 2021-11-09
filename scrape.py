@@ -21,19 +21,23 @@ class Scraper:
             self.driver = webdriver.Firefox(options=options)
         else:
             self.driver = webdriver.Firefox(options=options,
-                                            executable_path=os.environ.get("GECKODRIVER_PATH"),
+                                            executable_path=os.environ.get(
+                                                "GECKODRIVER_PATH"),
                                             firefox_binary=FirefoxBinary(os.environ.get("FIREFOX_BIN")))
         self.driver.get(page_url)
 
     def scrape(self, class_name=None, xpath=None):
         try:
-            WebDriverWait(self.driver, 4).until(EC.element_to_be_clickable((By.CLASS_NAME, 'css-1litn2c'))).click()
+            WebDriverWait(self.driver, 4).until(
+                EC.element_to_be_clickable((By.CLASS_NAME, 'css-1litn2c'))).click()
         except TimeoutException:
             pass
         if class_name:
-            element = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.CLASS_NAME, class_name)))
+            element = WebDriverWait(self.driver, 3).until(
+                EC.presence_of_element_located((By.CLASS_NAME, class_name)))
         if xpath:
-            element = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, xpath)))
+            element = WebDriverWait(self.driver, 3).until(
+                EC.presence_of_element_located((By.XPATH, xpath)))
         image = element.screenshot_as_png
         self.__close()
         return image
