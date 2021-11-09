@@ -1,0 +1,34 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/pyronlaboratory/heroku-integrated-firefox-geckodriver"
+    },
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "description": "A Discord bot useful for League of Legends players. Built using Discord.py and OP.GG data.",
+  "env": {
+    "DISCORD_TOKEN": {
+      "required": true
+    },
+    "FIREFOX_BIN": "/app/vendor/firefox/firefox",
+    "GECKODRIVER_PATH": "/app/vendor/geckodriver/geckodriver",
+    "LD_LIBRARY_PATH": "/usr/local/lib:/usr/lib:/lib:/app/vendor",
+    "PATH": "/usr/local/bin:/usr/bin:/bin:/app/vendor/",
+    "PRODUCTION": "true"
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1
+    }
+  },
+  "name": "hippalus-discord-bot",
+  "scripts": {
+    "postdeploy": "python bot.py"
+  },
+  "stack": "heroku-20"
+}
