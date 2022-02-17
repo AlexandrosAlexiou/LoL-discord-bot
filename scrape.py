@@ -7,6 +7,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.firefox.options import Options
 from dotenv import load_dotenv
+import logging
+
+logging.basicConfig(level=logging.NOTSET)
 
 
 class Scraper:
@@ -25,19 +28,14 @@ class Scraper:
                                                 "GECKODRIVER_PATH"),
                                             firefox_binary=FirefoxBinary(os.environ.get("FIREFOX_BIN")))
         self.driver.get(page_url)
+        self.page_url = page_url
 
-    def scrape(self, class_name=None, xpath=None):
-        try:
-            WebDriverWait(self.driver, 4).until(
-                EC.element_to_be_clickable((By.CLASS_NAME, 'css-1litn2c'))).click()
-        except TimeoutException:
-            pass
-        if class_name:
-            element = WebDriverWait(self.driver, 3).until(
-                EC.presence_of_element_located((By.CLASS_NAME, class_name)))
-        if xpath:
-            element = WebDriverWait(self.driver, 3).until(
-                EC.presence_of_element_located((By.XPATH, xpath)))
+    def scrape_opgg(self, class_name=None):
+        logging.info(
+            f"[Hippalus Scraper] Scraping: {self.page_url} for classname: {class_name}")
+        element = WebDriverWait(self.driver, 3).until(
+            EC.presence_of_element_located((By.CLASS_NAME, class_name)))
+
         image = element.screenshot_as_png
         self.__close()
         return image

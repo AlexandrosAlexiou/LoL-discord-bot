@@ -1,7 +1,7 @@
 <p align="center"> <img height="120" width="120" src="https://cdn.discordapp.com/attachments/326432556037832704/891739081762033704/3.png" alt="hippalus"/></p>
 
 <h1><div align="center">Hippalus</div></h1> 
-<p align="center">A Discord bot useful for League of Legends players. Built using <a href="https://discordpy.readthedocs.io/en/stable/">Discord.py</a> and <a href="https://www.op.gg/">OP.GG</a>. Deployed to Heroku.</p>
+<p align="center">A Discord bot useful for League of Legends players. Built using <a href="https://discordpy.readthedocs.io/en/stable/">Discord.py</a>, <a href="https://developer.riotgames.com/docs/lol#data-dragon_champions">Riot Games Data Dragon WebAPI</a> and <a href="https://www.op.gg/">OP.GG</a> for scraping the build recipes. Deployed to Heroku.</p>
 
 <br>
 
