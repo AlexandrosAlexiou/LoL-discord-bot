@@ -146,7 +146,7 @@ async def on_message(message):
         return
 
 
-@ client.event
+@client.event
 async def on_ready():
     response = requests.get(champions_endpoint)
     champions_json_response = json.loads(response.text)
