@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.NOTSET)
 
 
 class Scraper:
-    def __init__(self, page_url):
+    def __init__(self):
         options = Options()
         options.headless = True
         options.add_argument("--disable-dev-shm-usage")
@@ -25,19 +25,17 @@ class Scraper:
                                             executable_path=os.environ.get(
                                                 "GECKODRIVER_PATH"),
                                             firefox_binary=FirefoxBinary(os.environ.get("FIREFOX_BIN")))
-        self.driver.get(page_url)
-        self.page_url = page_url
 
-    def scrape_opgg(self, class_name=None):
+    def scrape(self, page_url=None, class_name=None):
         logging.info(
-            f"[Hippalus Scraper] Scraping: {self.page_url} for classname: {class_name}")
+            f"[Hippalus Scraper] Scraping: {page_url} for classname: {class_name}")
+        self.driver.get(page_url)
         element = WebDriverWait(self.driver, 3).until(
-            EC.presence_of_element_located((By.CLASS_NAME, class_name)))
-
+            EC.presence_of_element_located((By.CLASS_NAME, class_name))
+        )
         image = element.screenshot_as_png
-        self.__close()
         return image
 
-    def __close(self):
+    def close(self):
         self.driver.close()
         self.driver.quit()

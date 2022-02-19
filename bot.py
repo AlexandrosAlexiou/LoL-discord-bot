@@ -13,6 +13,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 PRODUCTION = os.getenv('PRODUCTION')
 
 client = discord.Client()
+scraper = Scraper()
 logging.basicConfig(level=logging.NOTSET)
 
 champion_names = set()
@@ -90,10 +91,10 @@ async def on_message(message):
         await message.channel.send(
             embed=construct_embed(
                 msg=f"✅ Aram build for __{champion_name}__ incoming ✅", thumbnail_url=get_champion_thumbnail_endpoint(champion_name)))
-        scraper = Scraper(
-            f"https://www.op.gg/aram/{champion_name.lower()}/statistics/")
-        image = scraper.scrape_opgg(
-            class_name="main")
+        image = scraper.scrape(
+            page_url=f"https://www.op.gg/aram/{champion_name.lower()}/statistics/",
+            class_name="main"
+        )
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
         return
@@ -111,36 +112,36 @@ async def on_message(message):
 
     if message.content.startswith('!build'):
         await message.channel.send(
-            embed=construct_embed(msg=f"✅ Build for {champion_name} {role} incoming ✅",
+            embed=construct_embed(msg=f"✅ Build for __{champion_name} {role}__ incoming ✅",
                                   thumbnail_url=get_champion_thumbnail_endpoint(champion_name)))
-        scraper = Scraper(
-            f"https://www.op.gg/champion/{champion_name.lower()}/statistics/{role}/build")
-        image = scraper.scrape_opgg(
-            class_name="main")
+        image = scraper.scrape(
+            page_url=f"https://www.op.gg/champion/{champion_name.lower()}/statistics/{role}/build",
+            class_name="main"
+        )
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
         return
 
     if message.content.startswith('!runes'):
         await message.channel.send(
-            embed=construct_embed(msg=f"✅ Runes for {champion_name} {role} incoming ✅",
+            embed=construct_embed(msg=f"✅ Runes for __{champion_name} {role}__ incoming ✅",
                                   thumbnail_url=get_champion_thumbnail_endpoint(champion_name)))
-        scraper = Scraper(
-            f"https://www.op.gg/champion/{champion_name.lower()}/statistics/{role}/build")
-        image = scraper.scrape_opgg(
-            class_name="css-80j10c.e10jawsm1")
+        image = scraper.scrape(
+            page_url=f"https://www.op.gg/champion/{champion_name.lower()}/statistics/{role}/build",
+            class_name="css-80j10c.e10jawsm1"
+        )
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
         return
 
     if message.content.startswith('!items'):
         await message.channel.send(
-            embed=construct_embed(msg=f"✅ Items for {champion_name} {role} incoming ✅",
+            embed=construct_embed(msg=f"✅ Items for __{champion_name} {role}__ incoming ✅",
                                   thumbnail_url=get_champion_thumbnail_endpoint(champion_name)))
-        scraper = Scraper(
-            f"https://www.op.gg/champion/{champion_name.lower()}/statistics/{role}/build")
-        image = scraper.scrape_opgg(
-            class_name="css-y6aqwj.e2uay8y0")
+        image = scraper.scrape(
+            page_url=f"https://www.op.gg/champion/{champion_name.lower()}/statistics/{role}/build",
+            class_name="css-y6aqwj.e2uay8y0"
+        )
         image = Image.open(io.BytesIO(image))
         await send_image_response(channel=message.channel, image=image)
         return
@@ -157,3 +158,4 @@ async def on_ready():
     await client.change_presence(activity=discord.Game('Type !hippalus for commands'))
 
 client.run(TOKEN)
+scraper.close()
