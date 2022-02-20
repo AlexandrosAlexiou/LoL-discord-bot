@@ -23,6 +23,16 @@ Please refer <a href="https://discordpy.readthedocs.io/en/stable/discord.html">h
 - The bot should be now online.
   - type `!hippalus` to get a list of the commands
 
+## <div align="center">Run with Docker</div>
+- Build the image,
+  ```dockerfile
+  docker build -t hippalus .
+  ```
+- Start the container,
+  ```shell
+  docker run hippalus
+  ```
+
 ## <div align="center">Deploy to Heroku </div>
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 - Create a Heroku application via the CLI or via the Heroku Dashboard. Connect the app with a GitHub repository and enable automatic builds <br>
