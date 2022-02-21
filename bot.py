@@ -17,6 +17,7 @@ scraper = Scraper()
 logging.basicConfig(level=logging.NOTSET)
 
 champion_names = set()
+champion_names_sorted = list()
 roles = {'jungle', 'top', 'bot', 'support', 'mid'}
 champions_endpoint = "https://ddragon.leagueoflegends.com/cdn/12.4.1/data/en_US/champion.json"
 
@@ -82,8 +83,8 @@ async def on_message(message):
     champion_name = message_keywords[1]
 
     if champion_name not in champion_names:
-        champions_list_message = "```ini\n [" + \
-            ", ".join(list(champion_names)) + "] \n```"
+        champions_list_message = "```ini\n" + \
+            ", ".join(list(champion_names_sorted)) + " \n```"
         await message.channel.send(f"❗ **Champion __{champion_name}__ does not exist in the list** ❗\n" + champions_list_message)
         return
 
@@ -151,8 +152,9 @@ async def on_message(message):
 async def on_ready():
     response = requests.get(champions_endpoint)
     champions_json_response = json.loads(response.text)
-    global champion_names
+    global champion_names, champion_names_sorted
     champion_names = set(champions_json_response["data"].keys())
+    champion_names_sorted = sorted(champion_names)
     logging.info(
         f'[Hippalus] Logged in as {client.user.name} with id {client.user.id}')
     await client.change_presence(activity=discord.Game('Type !hippalus for commands'))
